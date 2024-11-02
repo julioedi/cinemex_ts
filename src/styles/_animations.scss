@@ -1,0 +1,37 @@
+@use "colors";
+@keyframes bounce_in {
+    0%{
+        transform: scale(0%);
+    }
+    
+    80%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+@keyframes bounce_out {
+    0%{
+        transform: scale(100%) ;
+    }
+    20%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(0%);
+    }
+}
+
+@keyframes updating_background {
+    0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+$updatingBackground: updating_background 5s ease infinite; 
+
+$bounce_in: bounce_in 0.5s normal forwards ease-in-out;
+$bounce_out: bounce_out  0.5s normal forwards ease-in-out;

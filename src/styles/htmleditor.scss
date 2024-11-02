@@ -1,0 +1,131 @@
+@use "colors";
+.editor_field_component{
+    min-height: 600px;
+    height: 100%;
+    iframe{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        padding:0;
+    }
+    .iframe_wrap{
+        position: relative;
+        padding: 0;
+        // background:#000;
+        padding-top: 96px;
+        display: flex;
+        justify-content: center;
+        .iframe_container{
+            padding:32px;
+            display: flex;
+            flex: 1;
+            background:#000;
+            transition: 0.3s ease all;
+            max-width: 1160px;
+            iframe{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .responsive_btns{
+        display: flex;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px;
+        border:1px solid colors.$border;
+        border-radius: 12px;
+        label{
+            position: relative;
+        }
+        input:checked ~ .icon_btn{
+            background: colors.$border;
+        }
+        input{
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+        }
+        .icon_btn{
+            &::before,&::after{
+                display: none;
+            }
+        }
+        &:has(>label>[value="2"]:checked) ~ .iframe_container{
+            max-width: 390px;
+        } 
+        &:has(>label>[value="1"]:checked) ~ .iframe_container{
+            max-width: 800px;
+        } 
+        iframe{
+            transition: 0.3 ease all;
+            display: flex;
+        }
+    }
+    .edit_wrap{
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap:16px;
+        background-color: colors.$card_1;
+        &.preview{
+            
+            &:has(>.top>.fullscreen>label>:checked){
+                position: fixed;
+                inset: 0;
+                z-index: 9999999999999999999999;
+                padding:32px;
+
+            }
+            .top{
+                display: flex;
+                .text{
+                    flex: 1;
+                }
+            }
+            label{
+                position: relative;
+                input{
+                    position: absolute;
+                    inset: 0;
+                    opacity: 0;
+                }
+            }
+        }
+        &>.top{
+            display: grid;
+            gap: 8px;
+            a{
+                color: colors.$primary_200;
+                font-weight: bold;
+            }
+            a:first-letter{
+                text-transform: uppercase;
+            }
+        }
+    }
+    .html_core_editor{
+        background-color: colors.$body;
+        border:1px solid colors.$border;
+        padding: 32px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        &>div>a{
+            display: none;
+        }
+        .htmlbefore,.htmlafter{
+            color: #999;
+            user-select: none;
+            pointer-events: none;
+        }
+        .monaco-editor,.monaco-editor-background{
+            background-color: transparent;
+            .margin{
+                background: transparent;
+            }
+        }
+        .monaco-editor.no-user-select .lines-content, .monaco-editor.no-user-select .view-line, .monaco-editor.no-user-select .view-lines{
+            padding-right: 16px;
+        }
+    }
+}

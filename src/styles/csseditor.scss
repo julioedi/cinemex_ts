@@ -1,0 +1,34 @@
+@use "colors";
+body{
+
+    .rse-StyleEditor-root{
+        color: inherit;
+        flex: 1;
+        background: transparent;
+        border: none;
+        height: 160px;
+        overflow: auto;
+        border-radius: 4px;
+        &:hover{
+            background:  transparent;
+        }
+        .rse-Comment-content{
+            color: #73C972;
+            opacity: 0.5;
+        }
+        .rse-Rule-selector{
+            color: #D7BA7D;
+        }
+        .rse-Declaration-property{
+            color: #9CDCFE;
+        }
+        .rse-Checkbox-root{
+            border: 1px solid colors.$border;
+        }
+        .rse-Checkbox-checked::after{
+            border: solid 1px #9CDCFE;
+            border-top: none;
+            border-left: none;
+        }
+    }
+}

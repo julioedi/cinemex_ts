@@ -1,0 +1,157 @@
+@use "colors";
+@use "animations";
+$transition: 0.5s ease all;
+$bkg_image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23fff' fill-opacity='0.04'%3E%3Crect width='12' height='12'/%3E%3Crect x='12' y='12' width='12' height='12'/%3E%3Crect width='12' height='12'/%3E%3Crect x='12' y='12' width='12' height='12'/%3E%3C/svg%3E");
+#upload_modal{
+    position: fixed;
+    inset: 0;
+    // pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .overlay_bkg{
+        position: absolute;
+        inset: 0;
+        background: rgb(#000,0.5);
+        backdrop-filter: blur(16px);
+        opacity: 0;
+        transition: $transition;
+    }
+    .upload_wrap{
+        position: relative;
+        width: 800px;
+        min-height: 320px;
+        max-width: calc(100vw - 64px);
+        max-height: calc(100vh - 64px);
+        border-radius: 8px;
+        padding: 16px 32px 32px;
+        display: grid;
+        background: colors.$card_1;
+        display: grid;
+        grid-template-rows: 64px 1fr;
+        opacity: 0;
+        transform: scale(0);
+        transition: $transition;
+        animation: animations.$bounce_out;
+        .is_uploading{
+            position: absolute;
+            inset: 32px;
+            display: grid;
+            gap: 16px;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            .loading_icon{
+                font-size: 96px;
+            }
+            &.success{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                .left{
+                    table{
+                        border-spacing:0;
+                    }
+                    text-align: left;
+                    tr:not(:first-of-type){
+                        td{
+                            border-top: 1px solid colors.$border;
+                        }
+                    }
+                    td{
+                        padding: 12px 0;
+                        vertical-align: baseline;
+                    }
+                    td:first-of-type{
+                        padding-right: 12px;
+                        font-weight: bold;
+                        color: rgb(#fff,0.5)
+                    }
+                }
+                .right{
+                    position: relative;
+                    display: flex;
+                    height: 100%;
+                    border: none;
+                    border-radius: 8px;
+                    background-color: #000;
+                    background-image: $bkg_image
+                }
+                img{
+                    position: absolute;
+                    inset: 48px;
+                    width: calc(100% - 96px);
+                    height: calc(100% - 96px);
+                    object-fit: contain;
+                    pointer-events: none;
+                }
+            }
+        }
+        .top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid colors.$border;
+            margin-bottom: 24px;
+        }
+        .middle{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            .left{
+                align-content: flex-start;
+                gap:24px;
+            }
+            .right{
+                position: relative;
+                background: colors.$body;
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+                margin-top: 18px;
+                margin-bottom: 22px;
+                border-radius: 8px;
+                border: 2px dashed colors.$border;
+                padding: 64px;
+                text-align: center;
+                input{
+                    position: absolute;
+                    inset: 0;
+                    opacity: 0;
+                    cursor: pointer ;
+                }
+                img{
+                    position: absolute;
+                    inset: 48px;
+                    width: calc(100% - 96px);
+                    height: calc(100% - 96px);
+                    object-fit: contain;
+                    pointer-events: none;
+                }
+                img:not([src=""]) + .image_holder{
+                    display: none;
+                }
+                .no_image{
+                    font-size: 48px;
+                    margin-bottom: 24px;
+                }
+                
+                &.got_image{
+                    border: none;
+                    background-color: #000;
+                    background-image: $bkg_image
+                }
+            }
+        }
+    }
+    &.active{
+        .overlay_bkg{
+            opacity: 1;
+        }
+        .upload_wrap{
+            animation: animations.$bounce_in;
+            opacity: 1;
+        }
+    }
+}

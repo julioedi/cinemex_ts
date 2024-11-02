@@ -1,0 +1,61 @@
+@use "colors";
+$transition: 0.3s ease all;
+.tabs_list_wrapper{
+    display: grid;
+    grid-template-rows: 32px 1fr;
+    gap: 16px;
+    .tabs_names{
+        display: flex;
+        gap: 12px;
+        font-weight: bold;
+        align-content: center;
+        align-items: center;
+        .name{
+            position: relative;
+            display: flex;
+            align-content: center;
+            height: 100%;
+            user-select: none;
+            padding: 0 12px;
+            width: max-content;
+            cursor: pointer;
+            &::before{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                border-radius: 4px 4px 0 0;
+                background-color: colors.$primary;
+                opacity: 0;
+                transition: $transition;
+            }
+            &.active{
+                cursor: default;
+                pointer-events: none;
+                &:before{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .tabs_child{
+        display: grid;
+        align-content: flex-start;
+        &>div{
+            display: grid;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            opacity: 0;
+            pointer-events: none;
+            transition: $transition;
+            &.active{
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@use "colors";
+$transition: 0.3s ease all;
+#alerts_messages{
+    position: fixed;
+    z-index: 9999999999999;
+    top: 100vh;
+    left: 0;
+    right: 0;
+    .messages_list{
+        transition: 0.3s all;
+        position: absolute;
+        bottom: calc(100% + 32px);
+        left: 50%;
+        transform: translateX(-50%);
+        transition: $transition;
+        display: grid;
+        align-content: flex-start;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        gap: 16px;
+        &:empty{
+            opacity: 0;
+        }
+        .alert_message{
+            display: flex;
+            gap: 12px;
+            background: #000;
+            align-items: center;
+            padding: 8px 24px;
+            padding-right: 8px;
+            border-radius: 8px;
+            width: max-content;
+            user-select: none;
+            transition: $transition;
+            opacity: 0;
+            margin-bottom: calc(-100% - 12px);
+            &.success_message{
+                background: mix(colors.$success_a400,colors.$bkg,50%)
+            }
+            &.error_message{
+                background: mix(colors.$alert_a400,colors.$bkg,50%)
+            }
+
+            &.active{
+                opacity: 1;
+                margin-bottom: 0;
+            }
+            .mso{
+                cursor: pointer;
+                font-size: 16px;
+                padding: 8px;
+            }
+        }
+    }
+}

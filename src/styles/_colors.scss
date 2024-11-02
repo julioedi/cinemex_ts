@@ -1,0 +1,45 @@
+$primary_50: #ebeaff;
+$primary_100: #cccaff;
+$primary_200: #a8a8ff;
+$primary_300: #8285ff;
+$primary_400: #6466ff;
+$primary_500: #4845ff;
+$primary_600: #443bf3;
+$primary_700: #3b2ee6;
+$primary_800: #321ddb;
+$primary_900: #2200cb;
+
+$primary: $primary_500;
+
+.primary_background{
+    background: $primary;
+    color: #fff;
+}
+
+
+$alert_a100: #FF8A80;
+$alert: #FF5252;
+$alert_a400: #FF1744;
+
+
+.error_background{
+    background: $alert;
+    color: #fff;
+}
+
+$success_a100: #CCFF90;
+$success: #8BC34A;
+$success_a400: #689F38;
+.success_background{
+    background: $success;
+    color: #fff;
+}
+
+
+$bkg: #121212;
+$body: $bkg;
+$card_1: #1A1A1A;
+$card_2: mix($bkg,$primary,88%);
+$card_3: mix($bkg,$primary,82%);
+$border: #3A3A3A;
+

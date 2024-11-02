@@ -1,0 +1,89 @@
+@use "colors";
+@use "animations";
+$transition: 0.5s ease all;
+
+.modal_container{
+    position: fixed;
+    pointer-events: none;
+    z-index: 999999999;
+    inset: 0;
+    display: flex;
+    padding:32px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    .overlay{
+        position: absolute;
+        inset: 0;
+        background-color: rgb(#000,0.6);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        transition: $transition;
+    }
+    .container_wrap{
+        position: relative;
+        background-color: colors.$card_1;
+        border-radius: 8px;
+        flex: 1;
+        padding: 32px;
+        padding-top: 72px;
+        width: 100%;
+        max-width: 1080px;
+        opacity: 0;
+        transform: translateY(0);
+        animation: animations.$bounce_out;
+        transition: $transition;
+    }
+    .modal_head{
+        display: flex;
+        position: fixed;
+        align-items: center;
+        top: 16px;
+        left: 32px;
+        right: 32px;
+        height: 48px;
+        .title{
+            font-size: 24px;
+            flex: 1;
+        }
+    }
+    &.active{
+        pointer-events: all;
+        .overlay{
+            opacity: 1;
+        }
+        .container_wrap{
+            opacity: 1;
+            transform: translateY(0);
+            animation: animations.$bounce_in;
+        }
+    }
+    .modal_bottom_actions{
+        padding-top: 32px;
+        margin-top: 32px;
+        border-top: 1px solid colors.$border;
+        display: flex;
+        gap:32px;
+        justify-content: flex-end;
+    }
+    .general_table{
+        width: 100%;
+        border: 1px solid colors.$border;
+        border-collapse: collapse;
+        thead{
+            font-weight: 700;
+            color: mix(colors.$border,#fff,50%);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        td{
+            padding: 12px;
+            border: 1px solid colors.$border;
+        }
+        &.table_with_id{
+            tr>:first-child{
+                width: 64px;
+            }
+        }
+    }
+}
