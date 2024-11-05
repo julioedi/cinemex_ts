@@ -8,6 +8,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom
 import { GlobalsList } from "./constants/GlobalsList";
 import { mainPages, editPages } from "./Pages";
 import { AsideRouteProps } from "./constants/Routes";
+import MainTable from "./Pages/MainTable";
 
 const None = () => null;
 
@@ -48,21 +49,20 @@ export default class extends Component<ComponentClass> {
     return (
       <BrowserRouter basename={basePath}>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route element={<Layout />}>
             {
               filterRoutes.map((item, index) => {
                 const basePath = "/" + item.route;
-                const Main = mainPages[item.route] ?? None;
                 const Edit = editPages[item.route] ?? None;
                 return (
                   <Route key={index}>
                     <Route
                       key={`table_${index}`}
                       path={basePath}
-                      element={<Main key={item.route} head={item.name} title={`Listado de ${item.name} - Platino`} code={item.route} />}
+                      element={<MainTable key={item.route} route={item.route} name={item.name}/>}
                     />
                     <Route
-                      path={`${basePath}/edit/:id`}
+                      path={`${basePath}/edit/:ID`}
                       element={<Edit />}
                     />
                   </Route>

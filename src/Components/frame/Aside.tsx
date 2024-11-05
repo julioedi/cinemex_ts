@@ -22,11 +22,21 @@ class CoreAside extends Component<coreAsideProps> {
     state: CoreAsideState = {
         active: this.props.active ?? true,
     }
+    /**
+     * 
+     * @returns Main route 
+     */
     getActivecode(): string {
         const loc = this.props.location.pathname.match(/^\/(.*?)(\/|$)/i);
         const code = loc ? loc[1].toLocaleLowerCase() : "";
         return code;
     }
+
+    /**
+     * 
+     * @param code string of main route
+     * @returns index number if exists
+     */
     getLocation(code: string): number {
         let ret = -1;
         for (let i = 0; i < AsideRoutesList.length; i++) {
@@ -38,15 +48,26 @@ class CoreAside extends Component<coreAsideProps> {
         }
         return ret;
     }
-    // componentDidMount(): void {
-    //     if (this.props.location.pathname == "/") {
-    //         this.props.navigate("complex");
-    //     }
-    // }
+    toogle = () =>{
+        this.setState({
+            active: !this.state.active
+        })
+    }
+
+    LogoToogle = () => {
+        return (
+            <div className="logo_wraper" onClick={this.toogle}>
+                <Logo />
+            </div>
+        );
+    }
+
+
     render() {
+        const {LogoToogle} = this;
         const activeCode = this.getActivecode();
         const loc = this.getLocation(activeCode);
-        const activeStyles = activeCode === "settings" ? { top: "calc(100% - 56px)" } : { top: loc * 52 + 36};
+        const activeStyles = activeCode === "settings" ? { top: "calc(100% - 56px)" } : { top: (loc * 52) + 72 };
         return (
             <div
                 id="aside"
@@ -59,6 +80,7 @@ class CoreAside extends Component<coreAsideProps> {
                     className="active_element"
                     style={activeStyles}
                 />
+                <LogoToogle/>
                 <nav>
                     {
                         AsideRoutesList.map((item, index) => (

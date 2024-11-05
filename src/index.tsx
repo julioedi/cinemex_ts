@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import { GlobalsList } from './constants/GlobalsList';
+const root = ReactDOM.createRoot(GlobalsList.Dom);
 root.render(
   // <React.StrictMode>
     <App />

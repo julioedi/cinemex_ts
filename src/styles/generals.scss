@@ -69,11 +69,21 @@ hr{
 
 #body_content{
     position: relative;
-    min-height: calc(100vh - 40px);
+    // min-height: calc(100vh - 40px);
     &:has(>#loading){
         user-select: none;
     }
     
+}
+.loading_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    min-height: calc(100vh - 40px - 96px);
 }
 
 .provided_list{
@@ -451,7 +461,14 @@ Inicio del aside
         table{
             width: 100%;
             .status_wrap{
-                width: 160px;
+                position: relative;
+                width: 120px;
+                padding: 0 12px;
+                select{
+                    outline: none;
+                    width: 100%;
+                    padding: 0;
+                }
             }
             .slug{
                 width: 200px;
@@ -558,13 +575,20 @@ Inicio del aside
             left:240px
         }
     }
-    .logo{
-        font-size: 36px;
-        display: flex;
-        width: 40px;
-        height: 40px;
-        justify-content: center;
-        text-align: center;
+    .logo_wraper{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 56px;
+        padding: 12px;
+        .logo{
+            font-size: 36px;
+            display: flex;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            text-align: center;
+        }
     }
     
     .active_element{
@@ -582,6 +606,9 @@ Inicio del aside
         .active_element{
             opacity: 1;
         }
+    }
+    nav{
+        padding-top: 36px;
     }
     // nav:has(>.active){
     //     .active_element{
@@ -686,7 +713,7 @@ Inicio del aside
             box-shadow: 8px 0 64px 8px #000;
         }
         z-index: 9999999;
-        .logo{
+        .logo_wraper{
             display: none;
         }
     }
